@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+        /* Updated Palette for Deep Dark Violet Theme */
+        --primary: #efdd8d; /* Updated to Light Gold */
+        --on-primary: #161f00;
+        --primary-container: #4d5b24;
+        --on-primary-container: #e8fab2;
+        --secondary: #d8c779;
+        --secondary-container: #524603;
+        --on-secondary-container: #f5e392;
+
+        /* Main Background Change */
+        --surface: #210124;
+        --on-surface: #fbf9f1; /* High contrast off-white */
+        --on-surface-variant: #c6c8b8;
+        --outline: #76786b;
+        --outline-variant: #f4fdaf;
+
+        /* Elevated Surfaces */
+        --surface-container: #2d0b30;
+        --surface-container-high: #3a1a3d;
+        --surface-container-highest: #47294a;
+
+        --border-radius-xl: 0.75rem;
+        --border-radius-lg: 0.5rem;
+        --font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        font-family: var(--font-family);
+        background-color: var(--surface);
+        color: var(--on-surface);
+        overflow-x: hidden;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+    }
+
+    /* Custom EcoLogistics Styles */
+    .btn-primary-custom {
+        background-color: var(--primary);
+        color: var(--on-primary);
+        border: none;
+        border-radius: 9999px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary-custom:hover {
+        opacity: 0.9;
+        color: var(--on-primary);
+    }
+
+    .btn-hero-primary {
+        background-color: var(--primary);
+        color: var(--on-primary);
+        border: none;
+        border-radius: var(--border-radius-xl);
+        padding: 1rem 2rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+    }
+
+    .btn-hero-primary:hover {
+        opacity: 0.9;
+        color: var(--on-primary);
+        transform: scale(0.98);
+    }
+
+    .btn-hero-outline {
+        background-color: transparent;
+        color: var(--on-surface);
+        border: 1px solid var(--primary);
+        border-radius: var(--border-radius-xl);
+        padding: 1rem 2rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    .btn-hero-outline:hover {
+        background-color: rgba(239, 221, 141, 0.1);
+        color: var(--on-surface);
+    }
+
+    .badge-eco {
+        background-color: var(--secondary-container);
+        color: var(--on-secondary-container);
+        border-radius: 9999px;
+        padding: 0.25rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .text-primary-custom {
+        color: var(--primary);
+    }
+
+    .text-on-surface-variant {
+        color: var(--on-surface-variant);
+    }
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        background-color: var(--surface);
+        transition: all 0.3s ease;
+    }
+
+    .sticky-header.scrolled {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        background-color: rgba(33, 1, 36, 0.9);
+    }
+
+    .hero-img-container {
+        position: relative;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        min-height: 400px;
+        height: 100%;
+    }
+
+    .hero-img-overlay {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        background: rgba(45, 11, 48, 0.95); /* Deep dark overlay */
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .stat-divider {
+        width: 1px;
+        height: 2.5rem;
+        background-color: rgba(198, 200, 184, 0.2);
+    }
+
+    footer {
+        background-color: var(--surface-container-high);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-content-order {
+            order: 2;
+        }
+
+        .hero-image-order {
+            order: 1;
+        }
+    }</style>
+</head>
+<!-- Header -->
+<header class="sticky-header">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-primary-custom fs-2">local_shipping</span>
+                <span class="fs-3 fw-bold text-primary-custom">FlashLog</span>
+            </div>
+            <nav class="d-none d-md-flex align-items-center gap-4">
+                <a class="text-primary-custom text-decoration-none border-bottom border-2 border-primary-custom pb-1 fw-semibold small"
+                   href="#">Home</a>
+                <a class="text-on-surface-variant text-decoration-none fw-semibold small"></a></nav>
+            <div class="d-flex align-items-center">
+                <a href="{{ url_for('login') }}">
+                    <button class="btn btn-primary-custom">Login</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container-xxl py-5">
+    <!-- Hero Section -->
+    <section class="row align-items-center g-5 py-5">
+        <!-- Text Column -->
+        <div class="col-lg-5 hero-content-order">
+            <div class="mb-4">
+
+                <h1 class="display-4 fw-bold mb-3 lh-sm text-white"><span style="color: rgb(239, 221, 141);" class="">Precisão em todo</span>
+                    <span class="text-primary-custom">Movimento.</span></h1>
+                <p class="lead text-on-surface-variant mb-4">
+                    Reduzimos a distância entre sua empresa e seus clientes com soluções logísticas de alto desempenho
+que nunca comprometem a velocidade.
+                </p>
+            </div>
+            <div class="d-flex align-items-center gap-4 pt-4 border-top border-secondary-subtle">
+                <div>
+                    <div class="h3 fw-bold text-primary-custom mb-0">16</div>
+                    <div class="small text-uppercase text-on-surface-variant ls-1 fw-medium">de Maio</div>
+                </div>
+                <div>
+                    <div class="h3 fw-bold text-primary-custom mb-0">2026</div>
+                    <div class="small text-uppercase text-on-surface-variant ls-1 fw-medium">Atividade de Rastreamento</div>
+                </div>
+            </div>
+        </div>
+        <!-- Image Column -->
+        <div class="col-lg-7 hero-image-order">
+            <div class="hero-img-container">
+                <img alt="Logistics Excellence" class="w-100 h-100 object-fit-cover"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJMkp64SDU15OWyGyb64VzueXqjTuY8Xb5dxyw8UQkyaFYU68p8mQufYtLBeouFJgUpY4XaLIelNSFMR_pJgRQ6QLOtPiJbVpeglvv0bLBn_67kcdIR8W3jN1RSsKotp04T8CFCDw3xmU-bNz314ZEqt-HqqBtB_kfUcs18ceoLLgjIFMJepg9c5YXXi-4hr0sPSrhTJxzqS0R6CPs82Bb9phHbeZUCiml-CndmcYGI5Uv3Kv-r4KG9OJNHmQVbkNw286UbBlmafBE">
+                <div class="hero-img-overlay">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center"
+                             style="width: 48px; height: 48px; background-color: var(--primary-container);">
+                            <span class="material-symbols-outlined text-white">verified_user</span>
+                        </div>
+                        <div>
+                            <div class="fw-bold small text-white">FlashLog</div>
+                            <div class="small text-on-surface-variant">Reduzindo a distância com qualidade</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+            </div>
+        </div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Simple scroll effect for header
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.sticky-header');
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script></html>

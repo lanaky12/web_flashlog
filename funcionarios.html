@@ -1,0 +1,244 @@
+{% extends 'base.html'%}
+{% block content %}
+<!-- Bootstrap 5 CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+                :root {
+        /* Updated Palette for Deep Dark Violet Theme */
+        --primary: #efdd8d; /* Updated to Light Gold */
+        --on-primary: #161f00;
+        --primary-container: #4d5b24;
+        --on-primary-container: #e8fab2;
+        --secondary: #d8c779;
+        --secondary-container: #524603;
+        --on-secondary-container: #f5e392;
+
+        /* Main Background Change */
+        --surface: #210124;
+        --on-surface: #fbf9f1; /* High contrast off-white */
+        --on-surface-variant: #c6c8b8;
+        --outline: #76786b;
+        --outline-variant: #46483c;
+
+        /* Elevated Surfaces */
+        --surface-container: #2d0b30;
+        --surface-container-high: #3a1a3d;
+        --surface-container-highest: #47294a;
+
+        --border-radius-xl: 0.75rem;
+        --border-radius-lg: 0.5rem;
+        --font-family: 'Inter', sans-serif;
+    }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--surface);
+            color: var(--on-surface);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 256px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--surface-container-low);
+            border-right: 1px solid var(--outline-variant);
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0;
+        }
+
+        .main-content {
+            margin-left: 256px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--surface);
+        }
+
+        .nav-link-custom {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--on-surface-variant);
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+            border-radius: var(--primary);
+            margin: 0.125rem 0.5rem;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-link-custom:hover {
+            background-color: var(--surface-container-highest);
+            color: var(--primary);
+        }
+
+        .profile-section {
+            padding: 0 1.5rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+
+        .brand-h1 {
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 1.5rem;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Header Styling */
+        .top-app-bar {
+            position: sticky;
+            top: 0;
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--outline-variant);
+            z-index: 1040;
+            padding: 1rem 3rem;
+        }
+
+        .btn-signup {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            border-radius: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        .btn-signup:hover {
+            opacity: 0.9;
+        }
+
+        .btn-signup:active {
+            transform: scale(0.95);
+        }
+
+        .btn-ghost {
+            color: var(--on-surface-variant);
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--primary);
+        }
+
+        /* Badge */
+        .admin-badge {
+            background-color: var(--surface-container-highest);
+            color: var(--on-surface-variant);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--primary);
+            margin-left: 1.5rem;
+            margin-top: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface-container-low);
+            border-top: 1px solid var(--outline-variant);
+            padding: 2rem 3rem;
+            margin-top: auto;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--on-surface-variant);
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+            color: var(--on-surface);
+        }
+
+        .footer-link.highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--on-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border: none;
+            transition: transform 0.2s;
+            z-index: 1060;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .top-app-bar, footer {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style><body>
+
+<!-- Main Content Area -->
+<main class="main-content">
+<!-- TopAppBar -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><script>
+    // Ripple-like scaling effect for buttons/links
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mousedown', () => {
+            el.style.transform = 'scale(0.96)';
+        });
+        el.addEventListener('mouseup', () => {
+            el.style.transform = '';
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
+</script>
+</main>
+{% endblock %}

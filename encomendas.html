@@ -300,67 +300,80 @@
             }
         }
     </style>
-<!-- Sidebar -->
-    <div class="px-4 pt-3 border-top" style="border-color: var(--outline-variant) !important;"></div>
-<!-- Main Content -->
-<main class="main-content">
-    <!-- Header -->
-    <header class="d-flex justify-content-between align-items-center">
-        <h2 class="h4 fw-bold text-primary mb-0">Histórico de encomendas:</h2>
-        <div class="d-flex align-items-center gap-3">
-            <button class="btn btn-primary-eco d-flex align-items-center gap-2">
-                <span class="material-symbols-outlined fs-5"></span><a href="{{url_for('cad_encomendas')}}">Adicionar</a></button></div>
-    </header>
-    <!-- Page Content -->
-    <div class="container-fluid px-5 py-4">
-        <!-- Table Container -->
-        <div class="table-container">
-            <!-- Filters Bar -->
-            <div class="px-4 py-3 d-flex justify-content-between align-items-center border-bottom"
-                 style="background-color: var(--surface-container-high); border-color: var(--outline-variant) !important;">
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm fw-bold px-3 py-1.5 rounded-3 text-muted hover-bg-surface">Frágil</button>
-                    <button class="btn btn-sm fw-bold px-3 py-1.5 rounded-3 text-muted hover-bg-surface">+10kg</button></div></div>
-            <!-- Table -->
-            <div class="table-responsive" style="background-color: rgb(244, 253, 175) !important;">
-                <table class="table mb-0 border-0">
-                    <thead>
-                    <tr>
-                        <th class="border-0">ID</th>
-                        <th class="border-0 text-center">Peso</th>
-                        <th class="border-0 text-end">Código</th>
-                        <th class="border-0 text-center">Tamanho</th>
-                        <th class="border-0 text-end">Destinatário</th>
-                    </tr>
-                    </thead>
-                </table>
+<body>
+<div class="d-flex flex-column flex-lg-row">
+    <!-- Navigation Drawer -->
+
+    <!-- Main Content Area -->
+    <main class="main-content w-100">
+        <header class="top-app-bar d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 fw-bold text-white mb-0">Histórico de Encomendas</h1>
+                <p class="text-muted mb-0" style="font-size: 0.875rem;">Histórico de rastreamento global e gerenciamento
+                    estratégico.</p></div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-link text-on-surface p-2 rounded-circle"
+                        style="text-decoration: none; color: var(--bs-on-surface);"></button>
+                <button class="btn btn-white-custom"><a href="{{url_for('cad_locais')}}">Adicionar</a>
+                </button>
+            </div>
+        </header>
+        <!-- Dashboard Content -->
+        <div class="container-fluid px-lg-5 py-4">
+            <!-- KPI Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card-stat">
+                        <div class="text-uppercase text-muted mb-1"
+                             style="font-size: 0.75rem; letter-spacing: -0.02em;">Total de Centros:
+                        </div>
+                        <h3 class="text-white fw-bold mb-0">124</h3></div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-stat">
+                        <div class="text-uppercase text-muted mb-1"
+                             style="font-size: 0.75rem; letter-spacing: -0.02em;">Pontuação de Eficiência
+                        </div>
+                        <h3 class="text-white fw-bold mb-0">98.4%</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Audit Log Table -->
+            <div class="data-table-container"
+                 style="border-radius: 1rem; border: 1px solid var(--outline-variant); overflow: hidden; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px; background-color: rgb(71, 41, 74) !important;">
+                <div class="px-4 py-3 d-flex justify-content-between align-items-center table-header-custom">
+                    <h3 class="h5 mb-0 fw-bold">Encomendas recentes</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 border-0">
+                        <thead>
+                        <tr>
+                            <th class="">id</th>
+                            <th class="">Peso</th>
+                            <th class="">Frágil</th>
+                            <th class="">Tamanho</th>
+                            <th class="">Destinatário</th>
+                            <th class="">Codigo rastreio</th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-<!-- Bootstrap Bundle with Popper -->
+    </main>
+</div>
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Micro-interaction for table rows
-    document.querySelectorAll('.order-row').forEach(row => {
+    document.querySelectorAll('tbody tr').forEach(row => {
         row.addEventListener('click', () => {
-            const id = row.cells[0].innerText;
-            console.log(`Opening detail view for order: ${id}`);
-            row.style.backgroundColor = 'rgba(189, 206, 138, 0.15)';
-            setTimeout(() => {
-                row.style.backgroundColor = '';
-            }, 300);
-        });
-    });
-
-    // Search logic
-    const searchInput = document.querySelector('.search-input');
-    searchInput.addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase();
-        document.querySelectorAll('.order-row').forEach(row => {
-            const text = row.innerText.toLowerCase();
-            row.style.display = text.includes(val) ? 'table-row' : 'none';
+            document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('active-row'));
+            row.classList.add('active-row');
         });
     });
 </script>
+</body>
+
 {% endblock %}

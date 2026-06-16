@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/css/style.css"/>
     <style class="">
         :root {
-            --bs-primary: #bdce8a; /* Lighter primary for dark background */
+            --bs-primary: #f4fdaf; /* Lighter primary for dark background */
             --bs-primary-rgb: 189, 206, 138;
             --bs-secondary: #d8c779;
             --bs-surface: #210124; /* Requested page background */
@@ -241,11 +241,10 @@
             <div class="menu">
                 <aside class="sidebar">
                     <div class="px-4 mb-4 d-flex align-items-center gap-3">
-                        <span class="material-symbols-outlined text-primary fs-3"
+                        <span class="material-symbols-outlined text-white fs-3"
                               style="font-variation-settings: 'FILL' 1;">local_shipping</span>
-                        <span class="fw-black fs-4 text-primary" style="font-weight: 900;">FlashLog</span>
+                        <span class="fw-black fs-4 text-white" style="font-weight: 900;">FlashLog</span>
                     </div>
-                    <nav class="nav flex-column flex-grow-1">
                         <a class="nav-link" href="{{url_for('clientes')}}">
                             <span class="material-symbols-outlined">group</span>
                             <span class="">Clientes</span>
@@ -259,7 +258,7 @@
                             <span class="">Movimentações</span>
                         </a>
                         <a class="nav-link active" href="{{url_for('locais')}}">
-                            <span class="material-symbols-outlined">distance</span>
+                            <span class="material-symbols-outlined">business</span>
                             <span class="">Centros</span>
                         </a>
                     </nav>
